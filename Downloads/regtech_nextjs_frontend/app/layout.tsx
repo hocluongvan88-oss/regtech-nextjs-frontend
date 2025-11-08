@@ -1,5 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
+import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { LanguageProvider } from "@/lib/i18n/context"
 import { AuthProvider } from "@/lib/hooks/use-auth"
@@ -7,7 +8,8 @@ import "./globals.css"
 import { APP_METADATA } from "@/lib/constants/branding"
 import { Toaster } from "@/components/ui/sonner"
 
-// System font stack is already configured in globals.css
+const geistSans = Geist({ subsets: ["latin"] })
+const geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: APP_METADATA.title,
@@ -24,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans antialiased`}>
+      <body className={`${geistSans.className} font-sans antialiased`}>
         <AuthProvider>
           <LanguageProvider>{children}</LanguageProvider>
         </AuthProvider>
