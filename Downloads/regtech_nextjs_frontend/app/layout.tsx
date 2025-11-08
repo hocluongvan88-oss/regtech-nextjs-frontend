@@ -1,6 +1,5 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { LanguageProvider } from "@/lib/i18n/context"
 import { AuthProvider } from "@/lib/hooks/use-auth"
@@ -8,8 +7,7 @@ import "./globals.css"
 import { APP_METADATA } from "@/lib/constants/branding"
 import { Toaster } from "@/components/ui/sonner"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
+// System font stack is already configured in globals.css
 
 export const metadata: Metadata = {
   title: APP_METADATA.title,
