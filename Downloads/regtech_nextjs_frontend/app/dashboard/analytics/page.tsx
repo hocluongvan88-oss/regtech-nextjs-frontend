@@ -27,6 +27,16 @@ interface AnalyticsData {
   activity: any
 }
 
+function getAuthContext() {
+  if (typeof window === "undefined") return null
+  try {
+    const stored = localStorage.getItem("auth_context")
+    return stored ? JSON.parse(stored) : null
+  } catch {
+    return null
+  }
+}
+
 export default function AnalyticsPage() {
   const { t } = useLanguageContext()
   const [riskData, setRiskData] = useState<any>(null)
@@ -79,16 +89,6 @@ export default function AnalyticsPage() {
     const interval = setInterval(fetchData, 30000)
     return () => clearInterval(interval)
   }, [])
-
-  const getAuthContext = () => {
-    if (typeof window === "undefined") return null
-    try {
-      const stored = localStorage.getItem("auth_context")
-      return stored ? JSON.parse(stored) : null
-    } catch {
-      return null
-    }
-  }
 
   const getRiskColor = (level: string) => {
     switch (level) {
